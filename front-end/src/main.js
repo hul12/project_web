@@ -2,10 +2,15 @@ import { Router } from "./app/scripts/router";
 import { WelcomeComponent } from "./app/scripts/welcome";
 import { GameComponent } from "./app/scripts/game";
 import { ScoreComponent } from "./app/scripts/score";
+
 const outlet = document.querySelector("#content-outlet");
 const router = new Router(outlet);
 
 router.register("", {
+        component: WelcomeComponent,
+        templateUrl: "/src/app/views/welcome.html",
+         });
+router.register("/", {
         component: WelcomeComponent,
         templateUrl: "/src/app/views/welcome.html",
          });

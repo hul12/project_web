@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "build": "webpack build --mode=production --no-devtool",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve"
   },
