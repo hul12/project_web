@@ -14,7 +14,7 @@ import card8 from "/src/assets/cards/card-8.png";
 import card9 from "/src/assets/cards/card-9.png";
 
 
-var CARD_TEMPLATE = ""
+let CARD_TEMPLATE = ""
   .concat('<main class="card-cmp">')
   .concat('  <div class="card-wrapper">')
   .concat('    <img class="card front-face" alt="card" />')
@@ -23,7 +23,7 @@ var CARD_TEMPLATE = ""
   .concat("</main>");
 
 
-var environment = {
+let environment = {
   api: {
     host: "http://localhost:8081",
   },
@@ -35,7 +35,7 @@ var environment = {
 export class GameComponent extends Component {
   constructor() {
     super(template)
-    var params = parseUrl();
+    let params = parseUrl();
     this._name = params.name;
 
     // ...
@@ -58,17 +58,23 @@ export class GameComponent extends Component {
           // create cards out of the config
           this._cards = [];
           // TODO #functional-programming: use Array.map() instead.
-          for (var i in this._config.ids) {
+          for (let i in this._config.ids) {
             this._cards[i] = new CardComponent(this._config.ids[i]);
           }
 
           // TODO #functional-programming: use Array.forEach() instead.
-          // TODO #let-const: replace var with let.
-          for (var i in this._cards) {
-            var card = this._cards[i];
+
+          for (let i in this._cards) {
+            let card = this._cards[i];
 
             // TODO #let-const: extract function _appendCard (ie: copy its body here and remove the function)
-            this._appendCard(card);
+            this._boardElement.appendChild(card.getElement());
+            card.getElement().addEventListener(
+                "click",
+                function () {
+                  this._flipCard(card);
+                }.bind(this)
+            );
           }
 
           this.start();
@@ -89,7 +95,7 @@ export class GameComponent extends Component {
   }
   start() {
     this._startTime = Date.now();
-    var seconds = 0;
+    let seconds = 0;
     // TODO #template-literals:  use template literals (backquotes)
     document.querySelector("nav .navbar-title").textContent =
         "Player: " + this._name + ". Elapsed time: " + seconds++;
@@ -106,7 +112,7 @@ export class GameComponent extends Component {
   }
   fetchConfig(cb) {
     this.cb = cb;
-    var xhr =
+    let xhr =
         typeof XMLHttpRequest != "undefined"
             ? new XMLHttpRequest()
             : new ActiveXObject("Microsoft.XMLHTTP");
@@ -116,8 +122,8 @@ export class GameComponent extends Component {
 
     // TODO #arrow-function: use arrow function instead.
     xhr.onreadystatechange = function () {
-      var status;
-      var data;
+      let status;
+      let data;
       // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
       if (xhr.readyState == 4) {
         // `DONE`
@@ -133,7 +139,7 @@ export class GameComponent extends Component {
     xhr.send();
   }
   goToScore() {
-    var timeElapsedInSeconds = Math.floor(
+    let timeElapsedInSeconds = Math.floor(
         (Date.now() - this._startTime) / 1000
     );
     clearInterval(this._timer);
@@ -142,7 +148,7 @@ export class GameComponent extends Component {
         // TODO #arrow-function: use arrow function instead.
         function () {
           // TODO #spa: replace with './#score'
-          var scorePage = "./#score";
+          let scorePage = "./#score";
           // TODO #template-literals:  use template literals (backquotes)
           window.location =
               scorePage +
@@ -214,7 +220,7 @@ export class GameComponent extends Component {
 
 window.GameComponent = GameComponent;
 
-var CARDS_IMAGE = [
+let CARDS_IMAGE = [
   back,
   card0,
   card1,
