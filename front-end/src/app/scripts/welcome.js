@@ -2,35 +2,37 @@ import template from "../views/welcome.html";
 
 
 
-export function WelcomeComponent() {
-    this.template = template;
+export class WelcomeComponent {
+    constructor() {
+        this.template = template;
+    };
+        /* method WelcomeComponent.init */
+    init() {
+        let form = document.querySelector("form.form-signin");
 
-/* method WelcomeComponent.init */
+        form.addEventListener(
+            "submit",
 
-  WelcomeComponent.prototype.init = function init() {
-    let form = document.querySelector("form.form-signin");
+            // TODO #arrow-function: use arrow function instead.
+            function (event) {
+                event.preventDefault();
+                if (form.checkValidity() === false) {
+                    event.stopPropagation();
+                    form.classList.add("was-validated");
+                } else {
+                    var name = event.srcElement.querySelector("#nickname").value;
+                    var size = parseInt(event.srcElement.querySelector("#size").value);
 
-    form.addEventListener(
-      "submit",
-      // TODO #arrow-function: use arrow function instead.
-      function (event) {
-        event.preventDefault();
-        if (form.checkValidity() === false) {
-          event.stopPropagation();
-          form.classList.add("was-validated");
-        } else {
-          var name = event.srcElement.querySelector("#nickname").value;
-          var size = parseInt(event.srcElement.querySelector("#size").value);
+                    _startGame(name, size);
+                }
 
-          _startGame(name, size);
-        }
+            }.bind(this),
+            false
+        );
 
-      }.bind(this),
-      false
-    );
+        return this;
+    }
 
-    return this;
-  };
 }
   // TODO #class: turn function into a method of WelcomeComponent
   function _startGame(name, size) {
