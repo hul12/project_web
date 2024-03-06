@@ -8,20 +8,16 @@ import "./app/styles/style.css";
 
 const outlet = document.querySelector("#content-outlet");
 const router = new Router(outlet);
-
-router.register("", {
+router
+.register("", {
     component: WelcomeComponent,
-    templateUrl: "/src/app/views/welcome.html",
-});
-router.register("/", {
-    component: WelcomeComponent,
-    templateUrl: "/src/app/views/welcome.html",
-});
-router.register("game", {
-    component: GameComponent,
-    templateUrl: "/src/app/views/game.html",
-});
-router.register("score", {
-    component: ScoreComponent,
-    templateUrl: "/src/app/views/score.html",
-});
+})
+    .register("welcome", {
+        component: WelcomeComponent,
+    })
+    .register("game", {
+        component: GameComponent,
+    })
+    .register("score", {
+        component: ScoreComponent,
+    });

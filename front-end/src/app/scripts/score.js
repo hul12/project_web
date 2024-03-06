@@ -1,4 +1,5 @@
 import { parseUrl } from "./utils";
+import template from "../views/score.html";
 
 export function ScoreComponent() {
 
@@ -8,6 +9,7 @@ export function ScoreComponent() {
     this.name = params.name;
     this.size = parseInt(params.size);
     this.time = parseInt(params.time);
+    this.template = template;
   }
 
   // TODO #export-functions: remove this line

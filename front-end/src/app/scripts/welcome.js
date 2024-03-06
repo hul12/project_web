@@ -1,12 +1,11 @@
+import template from "../views/welcome.html";
 
 
 
+export function WelcomeComponent() {
+    this.template = template;
 
-export function WelcomeComponent() {}
 /* method WelcomeComponent.init */
-WelcomeComponent.prototype.init = function init() {
-  // ...
-};
 
   WelcomeComponent.prototype.init = function init() {
     let form = document.querySelector("form.form-signin");
@@ -25,13 +24,14 @@ WelcomeComponent.prototype.init = function init() {
 
           _startGame(name, size);
         }
+
       }.bind(this),
       false
     );
 
     return this;
   };
-
+}
   // TODO #class: turn function into a method of WelcomeComponent
   function _startGame(name, size) {
     // TODO #spa: replace with './#game'

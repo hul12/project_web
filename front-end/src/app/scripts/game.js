@@ -1,4 +1,6 @@
 import { parseUrl } from "./utils";
+import template from "../views/game.html";
+
 
 var CARD_TEMPLATE = ""
   .concat('<main class="card-cmp">')
@@ -23,7 +25,10 @@ export function GameComponent() {
   // gather parameters from URL
   var params = parseUrl();
 
-  // TODO #import-html: assign template to this.template
+
+    // ...
+    this.template = template;
+
   // save player name & game ize
   this._name = params.name;
   this._size = parseInt(params.size) || 9;
