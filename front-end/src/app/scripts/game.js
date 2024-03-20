@@ -58,14 +58,12 @@ export class GameComponent extends Component {
           // create cards out of the config
           this._cards = [];
           // TODO #functional-programming: use Array.map() instead.
-          for (let i in this._config.ids) {
-            this._cards[i] = new CardComponent(this._config.ids[i]);
-          }
+          this._cards = this._config.ids.map(id => new CardComponent(id));
 
           // TODO #functional-programming: use Array.forEach() instead.
 
-          for (let i in this._cards) {
-            let card = this._cards[i];
+          this._cards.forEach(card => {
+
 
             // TODO #let-const: extract function _appendCard (ie: copy its body here and remove the function)
             this._boardElement.appendChild(card.getElement());
@@ -75,7 +73,7 @@ export class GameComponent extends Component {
                   this._flipCard(card);
                 }.bind(this)
             );
-          }
+          })
 
           this.start();
         }.bind(this)
