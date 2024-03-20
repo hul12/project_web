@@ -96,16 +96,16 @@ export class GameComponent extends Component {
   start() {
     this._startTime = Date.now();
     let seconds = 0;
-    // TODO #template-literals:  use template literals (backquotes)
+
     document.querySelector("nav .navbar-title").textContent =
-        "Player: " + this._name + ". Elapsed time: " + seconds++;
+        `Player:${this._name} .Elapsed time:${seconds++}`;
 
     this._timer = setInterval(
         // TODO #arrow-function: use arrow function instead.
         function () {
-          // TODO #template-literals:  use template literals (backquotes)
+
           document.querySelector("nav .navbar-title").textContent =
-              "Player: " + this._name + ". Elapsed time: " + seconds++;
+              `Player:${this._name} .Elapsed time:${seconds++}`;
         }.bind(this),
         1000
     );
@@ -117,8 +117,8 @@ export class GameComponent extends Component {
             ? new XMLHttpRequest()
             : new ActiveXObject("Microsoft.XMLHTTP");
 
-    // TODO #template-literals:  use template literals (backquotes)
-    xhr.open("get", environment.api.host + "/board?size=" + this._size, true);
+
+    xhr.open("get", `${environment.api.host}/board?size=${this._size}`, true);
 
     // TODO #arrow-function: use arrow function instead.
     xhr.onreadystatechange = function () {
@@ -145,22 +145,12 @@ export class GameComponent extends Component {
     clearInterval(this._timer);
 
     setTimeout(
-        // TODO #arrow-function: use arrow function instead.
-        function () {
-          // TODO #spa: replace with './#score'
-          let scorePage = "./#score";
-          // TODO #template-literals:  use template literals (backquotes)
+
+        () => {
+          let scorePage = './#score';
           window.location =
-              scorePage +
-              "?name=" +
-              this._name +
-              "&size=" +
-              this._size +
-              "&time=" +
-              timeElapsedInSeconds;
-        }.bind(this),
-        750
-    );
+              `${scorePage}?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}`;
+          }, 750);
   }
   _flipCard(card) {
     this.card=card;
