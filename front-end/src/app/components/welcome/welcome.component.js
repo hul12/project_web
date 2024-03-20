@@ -1,9 +1,12 @@
-import template from "../views/welcome.html";
+import { Component } from "../../scripts/component";
+import template from "../welcome/welcome.component.html";
+import "./welcome.component.css";
 
 
 
-export class WelcomeComponent {
+export class WelcomeComponent extends Component {
     constructor() {
+        super(template)
         this.template = template;
     };
         /* method WelcomeComponent.init */
