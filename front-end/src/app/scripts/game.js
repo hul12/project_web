@@ -47,20 +47,18 @@ export class GameComponent extends Component {
     this._flippedCard = null;
     this._matchedPairs = 0;
   }
-  init() {
+  async init() {
+    this._config = await this.fetchConfig();
+    this._boardElement = document.querySelector(".cards");
     // fetch the cards configuration from the server
-    this.fetchConfig(
+
         // TODO #arrow-function: use arrow function instead.
-        function (config) {
-          this._config = config;
-          this._boardElement = document.querySelector(".cards");
+
 
           // create cards out of the config
           this._cards = [];
-          // TODO #functional-programming: use Array.map() instead.
           this._cards = this._config.ids.map(id => new CardComponent(id));
 
-          // TODO #functional-programming: use Array.forEach() instead.
 
           this._cards.forEach(card => {
 
@@ -76,8 +74,7 @@ export class GameComponent extends Component {
           })
 
           this.start();
-        }.bind(this)
-    );
+
   }
   _appendCard(card) {
     this.card=card;
@@ -108,34 +105,12 @@ export class GameComponent extends Component {
         1000
     );
   }
-  fetchConfig(cb) {
-    this.cb = cb;
-    let xhr =
-        typeof XMLHttpRequest != "undefined"
-            ? new XMLHttpRequest()
-            : new ActiveXObject("Microsoft.XMLHTTP");
-
-
-    xhr.open("get", `${environment.api.host}/board?size=${this._size}`, true);
-
-    // TODO #arrow-function: use arrow function instead.
-    xhr.onreadystatechange = function () {
-      let status;
-      let data;
-      // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
-      if (xhr.readyState == 4) {
-        // `DONE`
-        status = xhr.status;
-        if (status == 200) {
-          data = JSON.parse(xhr.responseText);
-          cb(data);
-        } else {
-          throw new Error(status);
-        }
-      }
-    };
-    xhr.send();
+  async fetchConfig() {
+    return fetch(`${environment.api.host}/board?size=${this._size}`).then(
+        (response) => response.json()
+    );
   }
+
   goToScore() {
     let timeElapsedInSeconds = Math.floor(
         (Date.now() - this._startTime) / 1000
