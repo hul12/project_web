@@ -1,9 +1,5 @@
 
-  /**
-   * Append an html template to the document, at the given outlet.
-   * @param HTMLElement outlet the location on the document to add the template
-   * @param HTMLElement template the template to append
-   */
+
   function renderTemplate(outlet, template) {
     while (outlet.lastChild) {
       outlet.removeChild(outlet.lastChild);
@@ -11,11 +7,8 @@
   outlet.appendChild(template);
   }
 
-  /**
-   * Create a new router. This router will load components into the given outlet.
-   * @param {HTMLElement} outlet The element to put components into.
-   */
-  // TODO #export-router: export this function
+
+
   export function Router(outlet) {
     this._components = {};
     this._templates = {};
@@ -30,12 +23,7 @@
     );
   }
 
-  /**
-   * Bind a component ot be displayed when the registered URL is reached.
-   * @param hash
-   * @param componentEntry
-   * @returns {Router}
-   */
+
   Router.prototype.register = function (hash, componentEntry) {
     var path = `#${hash}`;
     if (!componentEntry) {
@@ -123,9 +111,9 @@
     xhr.onreadystatechange = function () {
       var status;
       var data;
-      // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
+
       if (xhr.readyState == 4) {
-        // `DONE`
+
         status = xhr.status;
         if (status == 200) {
           data = xhr.responseText;

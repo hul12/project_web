@@ -1,6 +1,6 @@
 
 import "./card.component.css";
-import "./card.component.html";
+import CARD_TEMPLATE from "./card.component.html";
 import back from "./assets/back.png";
 import card0 from "./assets/card-0.png";
 import card1 from "./assets/card-1.png";
@@ -15,13 +15,9 @@ import card9 from "./assets/card-9.png";
 import {Component} from "../../../scripts/component";
 import template from "../game.component.html";
 
-let CARD_TEMPLATE = ""
-    .concat('<main class="card-cmp">')
-    .concat('  <div class="card-wrapper">')
-    .concat('    <img class="card front-face" alt="card" />')
-    .concat('    <img class="card back-face" alt="card" />')
-    .concat("  </div>")
-    .concat("</main>");
+
+
+
 
 
 let environment = {

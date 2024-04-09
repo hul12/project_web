@@ -1,5 +1,9 @@
 {
   "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.24.4",
     "css-loader": "^6.10.0",
     "html-loader": "^5.0.0",
     "style-loader": "^3.3.4"

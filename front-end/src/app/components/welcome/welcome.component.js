@@ -16,7 +16,7 @@ export class WelcomeComponent extends Component {
         form.addEventListener(
             "submit",
 
-            // TODO #arrow-function: use arrow function instead.
+
             function (event) {
                 event.preventDefault();
                 if (form.checkValidity() === false) {
@@ -37,9 +37,9 @@ export class WelcomeComponent extends Component {
     }
 
 }
-  // TODO #class: turn function into a method of WelcomeComponent
+
   function _startGame(name, size) {
-    // TODO #spa: replace with './#game'
+
     let gamePage = "./#game";
 
     window.location = `${gamePage}?name=${name}&size=${size}`;
